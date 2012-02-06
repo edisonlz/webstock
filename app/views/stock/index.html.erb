@@ -1,0 +1,18 @@
+<h1>Listing stocks</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for stock in @stocks %>
+  <tr>
+    <td><%= link_to 'Show', stock %></td>
+    <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
+    <td><%= link_to 'Destroy', stock, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New stock', new_stock_path %>

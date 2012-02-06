@@ -1,0 +1,209 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>天狼50免费在线行情——实时观看</TITLE>
+        <META http-equiv=Content-Type content="text/html; charset=utf-8">
+		<META content="MSHTML 6.00.3790.2954" name=GENERATOR />
+		<LINK href="files/layout.css" type=text/css rel=stylesheet></LINK>
+        <!--[if IE]>
+<SCRIPT language=javascript src="files/excanvas.pack.js" type=text/javascript></SCRIPT>
+        <![endif]-->
+        <SCRIPT language=javascript src="files/jquery.js" type=text/javascript></SCRIPT>
+        <SCRIPT language=javascript src="files/pub_jquery.flot_day.js" type=text/javascript></SCRIPT>
+        <SCRIPT language=javascript src="files/pub_tt_g.js" type=text/javascript></SCRIPT>
+		<script type="text/javascript" src="files/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="files/jquery.idTabs.min.js"></script>
+		<link href="files/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+		<style>
+			body{background-color:#fff;font-family:"宋体"; font-size:14px; margin:0;padding:0;border:0}
+			div{font-size:14px; font-family:"宋体"}
+			td {font-size:14px; font-family:"宋体"}
+			font {font-size:14px; font-family:"宋体"}
+		    a {text-decoration:none; font-size:14px; font-family:"宋体" }
+            span { padding:5px}
+            span font{ font-size:12px;}
+			input, textarea,select {
+ 	border: 1px solid #CBCBCB;
+ 	background: #FFFFFF;
+ 	}
+ 	.frm-tbl td { vertical-align: top; padding: 5px; }
+ 	td#frm-btns { text-align: right; }
+ 	#comment_body { height: 220px; }
+ 	#form-submit-button { background: #d3e0ea; }
+	.dotline {
+BORDER-BOTTOM-STYLE: dotted; BORDER-LEFT-STYLE: dotted; BORDER-RIGHT-STYLE: dotted; BORDER-TOP-STYLE: dotted
+}
+	.clearfix{font-size:14px; font-family:"宋体" }
+	#tab_day UL LI a:visited { COLOR:#3355FF; font-weight:bold; }
+	#tab_day UL A:hover {BACKGROUND: #111; COLOR:#006600}
+	#tab_day UL A.selected {BACKGROUND: #ffffff; MARGIN-BOTTOM: 0px; CURSOR: pointer; COLOR:#CC9900; BORDER-BOTTOM: snow 1px solid}
+	#tab_day UL LI {FLOAT: left; LIST-STYLE-TYPE: none}
+	
+	#biz_info UL A:hover {BACKGROUND: #111; COLOR:#006600}
+	#biz_info UL A.selected {BACKGROUND: #ffffff; MARGIN-BOTTOM: 0px; CURSOR: pointer; COLOR:#CC9900; BORDER-BOTTOM: snow 1px solid}
+	#biz_info UL LI {FLOAT: left; LIST-STYLE-TYPE: none; padding-right:12px; font-family:"宋体"; font-size:14px; font-weight:bold; color:#000000;}
+	
+	ul li { list-style:none; }
+	#aaa {border-top:1px dashed #cccccc;height: 12px;overflow:hidden;}
+   </style>
+    </HEAD>
+	
+    <BODY>
+	<div width="100%" style=" margin:0; padding:0px">&nbsp;<font style="font-size:16px; font-family:'黑体'">天狼50&nbsp;在线免费实时看盘</font>
+	<div id='aaa'></div>
+	</div>
+		
+	<div align="left" style="float:left">
+        <div align="left"  style="background-color:#2f2f2f;border:1px solid #ececec; width:667px" >
+		<font style="font-size:12px; font-weight:bold; color:#FF0000;">股票代码/名称:</font><input id="stock_id" onKeyUp="validateStockCode(this);" onpaste="validateStockCode(this);" type="text" value="600000"/> <input  onClick="load_data()" type="button" value=" 查询 ">
+            <input  onClick="start_radar()" type="button" value="股票雷达"/>
+			<input  onClick="start_heart()" type="button" value="A股涨跌幅"/>
+			<div id="tab_day" style="width:667px; border-top:1px solid #999999; height:16px;">
+			<ul class="idTabs" style="margin:0; padding:0" > 
+  				<li><a href="#content" onClick="istime=true;load_data();">&nbsp;实时&nbsp;</a></li>
+				<li><a href="#day_content" onClick="istime=false;stock_load_day();">&nbsp;日线&nbsp;</a></li>
+			</ul>
+			</div>
+			
+			 <div style="clear:both; font-size:0px; height:0; line-height:0; "></div>
+        </div>
+		
+        <!-- 数据 区域-->
+        <div id="content" style="background-color:#2f2f2f;border:1px solid #ececec; width:665px; background-image:url(files/tl_logo.gif); background-repeat:no-repeat;"  onmousemove="handlerMM();">
+            <div id="title" style="padding:2px;width:650px">
+                <span><font color="#FF0000"><b id="sname"></b></font>&nbsp;</span>
+                <span><font style="font-size:12px;color:#FFFFFF;">当前价格:</font><font id="current_price" color="#FF0000"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">今日最高价格:</font><font id="max_price" color="#FF0000"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">今日最低价格:</font><font id="min_price" color="#999900"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">涨跌幅:</font><font id="up_down" color="#ffffff"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">昨收:</font><font id="y_price" color="#ffffff"></font></span>
+            </div>
+            <div id="timeLine" >
+                <div id="c_price" style="position:absolute;WIDTH: 180px;z-index:999999;"><font style="font-size:12px; font-weight:bold; color:#FFFFFF">价格:<SPAN id=result>0</SPAN>元</font></div>
+                <DIV id="placeholder" style="WIDTH: 650px; HEIGHT: 200px"></DIV>
+            </div>
+            <div id="amount" style="width:665px; height:60px; border:1px solid #333333; ">
+                <div id="amount_holder"  style="width:650px; height:60px; "></div>
+            </div>
+            <div id="amount_s" style="border-top:1px solid #ececec;">
+               
+				    <div id="art_holder" style="float:left; padding-left:2px;padding-top:25px"><font style="font-size:12px;color:#FFFFFF;"><b>委托比例</b></font><font id="vt_value"></font></div> 
+					<div id="arc_holder" style=" position:relative;width:90px; height:80px;border:0px solid #000000;float:left;"></div>
+					<div style="float:left; width:220px;">
+                    	<div style="width:100%;overflow:hidden"><font id="vt_up_list" color="#993333"></font></div>
+                    	<div style="width:100%;overflow:hidden"><font id="vt_down_list" color="#00CC66"></font></div>
+                	</div>
+					<div align="center" style="float:left; padding-top:10px;border-left:1px solid #ececec;border-right:1px solid #ececec;">
+						<div><font style="font-size:12px; color:#FFFFFF; font-weight:bold;">成交量涨跌幅</font></div>
+						<div style="float:left; width:170px; height:80px" id="trend_holder"></div>
+					</div>
+					<div style="width:90px; float:left;">
+						<div align="center"><font style="font-size:12px;color:#FFFFFF;font-weight:bold;">A股涨跌幅</font></div>
+						<div style="width:90px; height:90px;" id="all_value_holder"></div>
+					</div>
+                </div>
+				<div style="clear:both; "></div>
+            
+        </div>
+		<!-- day stock show-->
+		<div  id="day_content" style="background-color:#333333; width:665px;">
+		    <div id="day_title" style="padding:0px;width:650px">
+                <span><font color="#FF0000"><b id="day_name"></b></font>&nbsp;</span>
+                <span><font style="font-size:12px;color:#FFFFFF;">开盘价格:</font><font id="open_price" color="#FF0000"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">最高价格:</font><font id="day_max_price" color="#FF0000"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">最低价格:</font><font id="day_min_price" color="#999900"></font></span>
+                <span><font style="font-size:12px;color:#FFFFFF;">收盘价格:</font><font id="close_price" color="#ffffff"></font></span>
+				<span><font style="font-size:12px;color:#FFFFFF;">成交量:</font><font id="day_iamount" color="#ffffff"></font></span>
+            </div>
+			<div id="dayholder" style="background-color:#333333;border:0px solid #ffffff; width:665px; HEIGHT: 180px" >
+				
+			</div>
+			<div id="dayholder_aomount" style="background-color:#333333;border:2px solid #ffffff; width:665px; HEIGHT: 90px" >
+				
+			</div>
+		</div>
+		
+		<!-- radar stock show-->		
+		  <div id="content_radar" style="background-color:#333333;border:0px solid #000000; width:665px;visibility:hidden" >
+                <div>
+                    <div><font style=" float:left;font-size:12px; color:#FF0000"><b>涨幅前20名</b></font></div>
+					<div style="float:left; padding-left:10px; cursor:hand;"><font style=" font-size:12px; color:#FF0000"><b onClick="clear_select()">还原大小+</b></font></div>
+					<div style="float:left; padding-left:10px; display:none">
+					</div>
+					<div style="clear:both; "></div>
+                </div>
+                <div id="radarLine" >
+                    <DIV id="radarholder" style="WIDTH: 650px; HEIGHT: 10px"></DIV>
+                </div>
+            </div>
+	</div>
+	
+	<!-- stock info -->
+	<div style="float:left;width:250px;height:220px; word-break:all; padding-left:5px">
+	 <div id="day_view_info" style="float:left;width:100%;height:220px;  padding-left:5px">
+	   	<div id="mgmtdiv" width="100%"><b>股市直通车</b></div>
+		<div id="day_view" style="width:100%;" align="left"></div>
+	 </div>
+	</div>
+	 
+	 <div style="clear:both;"></div>
+	<!-- financial info -->
+	<div align="left"  style="width:100%; background:#FFFFFF;">
+		<div  style="width:49%; float:left; word-break:break-all;">
+			<div  id="keyratios"   style="width:99%;word-break:break-all;padding-top:5px;">
+			</div>
+			<div style="width:100%;padding-top:5px;">
+				<div class="hdg" id="mgmtdiv" width="100%">&nbsp;<h3></h3></div>
+				<div  id="BIZ_IS_info" style="width:99%;word-break:break-all;"></div>
+			</div>
+			<div  id="relate"   style="width:99%;word-break:break-all; padding-top:5px;">
+			</div>
+		</div>
+		<div id="biz_info" style="width:49%; float:left;word-break:break-all;" >
+			<div style="width:100%">
+			<ul class="idTabs" style="margin:0; padding:0" > 
+  				<li><a href="#event" onClick="istime=true;load_data();">公司事件</a></li>
+				<li><a href="#summary" onClick="istime=false;stock_load_day();">公司简介</a></li>
+				<li><a href="#managements" onClick="istime=false;stock_load_day();">管理人员</a></li>
+			</ul>
+			</div>
+			<br/>
+			<div  id="event"  style="width:99%;word-break:break-all;padding-top:5px;">
+			</div>
+			<div  id="summary"  style="width:99%;padding-top:5px;">
+			</div>
+			<div  id="managements"  style="width:99%;word-break:break-all;padding-top:5px;">
+			</div>
+		</div>
+	</div>
+	 <div style="clear:both; font-size:0px; height:0; line-height:0; "></div>
+	<div align="center" id="comment_div">
+	 <DIV align="left" style="width:500px;">
+	 	 <b style="color:#CC3300">是否该买，是否该卖，还是等待...唉 评评论论!! ?</b>
+		 <div id='aaa'></div>
+	  </DIV>
+	  <div style="width:70%" id="commentText">
+	  </div>
+		 <FORM id="commentform" action='' method="post" >
+              <DIV align="left" style="width:500px;">
+                <div><LABEL for=name>大名:</LABEL> <INPUT id=name tabIndex=3 size=20 name='name'></div>
+                <div style="vertical-align:top"><LABEL for=url>内容:</LABEL><TEXTAREA id=comment_content tabIndex=4 name='content' rows=10 cols=40 onFocus="if(this.value=='字数上限为2000字'){this.value='';}this.select();">字数上限为2000字</TEXTAREA></div>
+                <div><INPUT class=button id=submit onClick="send_comment();" title="Please review your comment before submitting" tabIndex=5 type="button" value=" 发表 感言,心得 " name=submit >		<input type="hidden" name="code" id="code_h" value="600000"/>
+				<input type="hidden" name="authenticity_token" value="test" >
+                </div>
+              </DIV>
+              <script type="text/javascript">
+                  function add_emotion(eObj)
+                  {
+                      if( $("#comment_content").val()=='字数上限为2000字')
+                      {
+                          $("#comment_content").val(eObj);
+                      }
+                      else
+                      {
+                          $("#comment_content").val($("#comment_content").val()+eObj);
+                      }
+                  }
+              </script>
+            </FORM>
+	</div>
+    </BODY>
+</HTML>

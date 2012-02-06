@@ -1,0 +1,96 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>天狼50免费在线行情——实时观看</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8"><LINK 
+      href="files/layout.css" type=text/css rel=stylesheet></LINK>
+    <!--[if IE]>
+<SCRIPT language=javascript src="files/excanvas.pack.js" type=text/javascript></SCRIPT>
+        <![endif]-->
+    <SCRIPT language=javascript src="files/jquery.js" type=text/javascript></SCRIPT>
+    <SCRIPT language=javascript src="files/jquery.flot.js" type=text/javascript></SCRIPT>
+    <SCRIPT language=javascript src="files/tt_1.js" type=text/javascript></SCRIPT>
+    <SCRIPT language=javascript src="files/wz_jsgraphics.js" type=text/javascript></SCRIPT>
+    <script type="text/javascript" src="files/jquery.autocomplete.js"></script>
+    <link href="files/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <style>
+      span { padding:5px}
+      span font{ font-size:12px;}
+      input, textarea,select {
+        border: 1px solid #CBCBCB;
+        background: #FFFFFF;
+      }
+      .frm-tbl td { vertical-align: top; padding: 5px; }
+      td#frm-btns { text-align: right; }
+      #comment_body { height: 220px; }
+      #form-submit-button { background: #d3e0ea; }
+    </style>
+    
+    <META content="MSHTML 6.00.3790.2954" name=GENERATOR />
+  </HEAD>
+  <BODY bgcolor="#cccccc">
+    <div align="center">
+      <div align="left"  style="background-color:#2f2f2f;border:1px solid #ececec; width:667px" >
+	  <font style="font-size:12px; font-weight:bold; color:#FF0000;">股票代码:</font><input id="stock_id" onKeyUp="validateStockCode(this);" onpaste="validateStockCode(this);" type="text" value="600000"/> <input  onClick="load_data()" type="button" value=" 查询 ">
+        <input  onClick="start_radar()" type="button" value=" 股票雷达 "/>
+        <input  onClick="start_heart()" type="button" value=" A股涨跌幅 "/>
+      </div>
+      <!-- 数据 区域-->
+      <div id="content" style="background-color:#2f2f2f;border:1px solid #ececec; width:665px; background-image:url(files/tl_logo.gif); background-repeat:no-repeat;"  onmousemove="handlerMM();">
+        <div id="title" style="padding:2px;width:650px">
+          <span><font color="#FF0000"><b id="sname"></b></font>&nbsp;</span>
+          <span><font style="font-size:12px;color:#FFFFFF;">当前价格:</font><font id="current_price" color="#FF0000"></font></span>
+          <span><font style="font-size:12px;color:#FFFFFF;">今日最高价格:</font><font id="max_price" color="#FF0000"></font></span>
+          <span><font style="font-size:12px;color:#FFFFFF;">今日最低价格:</font><font id="min_price" color="#999900"></font></span>
+          <span><font style="font-size:12px;color:#FFFFFF;">涨跌幅:</font><font id="up_down" color="#ffffff"></font></span>
+          <span><font style="font-size:12px;color:#FFFFFF;">昨收:</font><font id="y_price" color="#ffffff"></font></span>
+        </div>
+        <div id="timeLine" >
+          <div id="c_price" style=" position:absolute;WIDTH: 150px;"><font style="font-size:12px; font-weight:bold; color:#FFFFFF">价格:<SPAN id=result>0</SPAN>元</font></div>
+          <DIV id="placeholder" style="WIDTH: 650px; HEIGHT: 200px"></DIV>
+        </div>
+        <div id="amount" style="width:665px; height:60px; border:1px solid #333333; ">
+          <div id="amount_holder"  style="width:650px; height:60px; "></div>
+        </div>
+        <div id="amount_s" style="border-top:1px solid #ececec;">
+          
+          <div id="art_holder" style="float:left; padding-left:2px;padding-top:25px"><font style="font-size:12px;color:#FFFFFF;"><b>委托比例</b></font><font id="vt_value"></font></div> 
+          <div id="arc_holder" style=" position:relative;width:90px; height:80px;border:0px solid #000000;float:left;"></div>
+          <div style="float:left; width:220px;">
+            <div style="width:100%;overflow:hidden"><font id="vt_up_list" color="#993333"></font></div>
+            <div style="width:100%;overflow:hidden"><font id="vt_down_list" color="#00CC66"></font></div>
+          </div>
+          <div align="center" style="float:left; padding-top:10px;border-left:1px solid #ececec;border-right:1px solid #ececec;">
+            <div><font style="font-size:12px; color:#FFFFFF; font-weight:bold;">成交量涨跌幅</font></div>
+            <div style="float:left; width:170px; height:80px" id="trend_holder"></div>
+          </div>
+          <div style="width:90px; height:80px; float:left;">
+            <div align="center"><font style="font-size:12px;color:#FFFFFF;font-weight:bold;">A股涨跌幅</font></div>
+            <div style="width:90px; height:80px;" id="all_value_holder"></div>
+          </div>
+        </div>
+        <div style="clear:both; "></div>
+        
+      </div>
+      
+      <div id="content_radar" style="background-color:#333333;border:2px solid #000000; width:665px; visibility:hidden" >
+        <div>
+          <div><font style=" float:left;font-size:12px; color:#FF0000"><b>涨幅前20名</b></font></div>
+          <div style="float:left; padding-left:10px; cursor:hand;"><font style=" font-size:12px; color:#FF0000"><b onClick="clear_select()">还原大小+</b></font></div>
+          <div style="float:left; padding-left:10px; display:none">
+            <select onChange="return false;select_count(this.value);">
+              <option value="1">前1</option>
+              <option value="5">前5</option>
+              <option value="10">前10</option>
+              <option value="20">前20</option>
+              <option value="30">前30</option>
+            </select>
+          </div>
+          <div style="clear:both; "></div>
+        </div>
+        <div id="radarLine" >
+          <DIV id="radarholder" style="WIDTH: 650px; HEIGHT: 200px"></DIV>
+        </div>
+      </div>
+    </div>
+   
+  </BODY>
+</HTML>

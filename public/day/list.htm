@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>天狼50 股票筛选</title>
+<!--[if IE]>
+<SCRIPT language=javascript src="files/excanvas.pack.js" type=text/javascript></SCRIPT>
+<![endif]-->
+<SCRIPT language=javascript src="files/jquery.js" type=text/javascript></SCRIPT>
+<script type="text/javascript" src="files/sfilter.js"></script>
+<style>
+body{background-color:#fff;font-family:"宋体"; font-size:15px; margin:0;padding:0;border:0}
+input, textarea,select {
+ 	border: 1px solid #CBCBCB;
+ 	background: #FFFFFF;
+ 	}
+#aaa {border-top:1px dashed #cccccc;height: 12px;overflow:hidden;}
+</style>
+</head>
+
+<body>
+	<!--header-->
+	<div width="100%" style=" margin:0; padding:0px">&nbsp;<font style="font-size:16px; font-family:'黑体'">天狼50&nbsp;在线免费实时看盘&nbsp;&nbsp;股票筛选</font>
+	<div id='aaa'></div>
+	</div>
+	
+	<!--股票筛选 -->
+	<div id="stock_filter" style=" width:650px;">
+		<div style="width:450px; float:left">
+			<form>
+				<div style="width:300px;">
+					<div style="float:left">最高</div>
+					<div style="float:right">最低</div>
+				</div>
+				<div style="clear:both"></div>
+				<div>
+				价格:<input id="min_price" type="text" maxlength="10" size="10"  />
+				<span id="price_view"> </span>
+				<input id="max_price" type="text" maxlength="10" size="10" />
+				</div>
+			    <div>
+				涨跌幅%:<input id="min_up" type="text" maxlength="10" size="10"  />
+				<span id="price_view"> </span>
+				<input id="max_up" type="text" maxlength="10" size="10" />
+				<input  type="button"  value=" 查询 "  onclick="filter_stock();" />
+				<input  type="button"  value=" 重置 " onclick="clear_stock();" />
+				</div>
+			</form>
+		</div>
+		<div style="float:left;width:150px;">
+			<div>A股涨跌幅度<span id="幅度"></span></div>
+			<div id="heart_div" style="width:200px; height:90px;"></div>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+	<!--股票View -->
+	<div id="stock_view" style=" width:100%">
+		<div id="stock_resule" style="width:100%"></div>
+		<div id="stock_resule_operator" style="width:100%"><span id="next_page" onclick="last_stock_page()">上一页</span><span>&nbsp;&nbsp;</span><span id="last_page" onclick="next_stock_page()">下一页</span></div>
+	</div>
+</body>
+</html>
